@@ -1,19 +1,21 @@
-import { useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
-import './App.css'
-import { FullMoon } from './FullMoon'
-import { HalfMoon } from './HalfMoon'
-import { BrainRight } from './BrainRight'
+import { useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import "./App.css";
+import { FullMoon } from "./FullMoon";
+import { HalfMoon } from "./HalfMoon";
+import { BrainRight } from "./BrainRight";
+import { CupMoon } from "./CupMoon";
+import Page1 from "./pages/Page1";
 
 function Box(props) {
   // This reference gives us direct access to the THREE.Mesh object
-  const ref = useRef()
+  const ref = useRef();
   // Hold state for hovered and clicked events
-  const [hovered, hover] = useState(false)
-  const [clicked, click] = useState(false)
+  const [hovered, hover] = useState(false);
+  const [clicked, click] = useState(false);
   // Subscribe this component to the render-loop, rotate the mesh every frame
-  useFrame((state, delta) => (ref.current.rotation.x += delta))
+  useFrame((state, delta) => (ref.current.rotation.x += delta));
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
     <mesh
@@ -22,45 +24,68 @@ function Box(props) {
       scale={clicked ? 1.5 : 1}
       onClick={(event) => click(!clicked)}
       onPointerOver={(event) => (event.stopPropagation(), hover(true))}
-      onPointerOut={(event) => hover(false)}>
+      onPointerOut={(event) => hover(false)}
+    >
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+      <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
     </mesh>
-  )
+  );
 }
 
 export default function App() {
   return (
     <>
-      <Canvas camera={{ position: [0, 4, 10], fov: 50 }}>
-      <ambientLight intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-      <pointLight position={[-10, -10, -10]} />
-     
-      <FullMoon position={[0, -5, 3]}></FullMoon>
-      
-    </Canvas>
-    {/* <h1>heloo</h1> */}
-    <Canvas camera={{ position: [-8, 4, 15] }}>
-      <ambientLight intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-      <pointLight position={[-10, -10, -10]} />
-      
-      <FullMoon></FullMoon>
-      
-    </Canvas>
-    <Canvas camera={{ position: [1, 4, 15] }}>
-      <ambientLight intensity={0.5} />
-      {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} /> */}
-      {/* <pointLight position={[-10, -10, -10]} /> */}
-      
-      <HalfMoon></HalfMoon>
-      <BrainRight position={[3, 0, -1]} />
-      <OrbitControls />
-    </Canvas>
+      <div className="body-container">
+        <div className="page">
+          <div className="page1-cupMoon">
+            <div className="heading-p1-container">
+              <h1 className="page1-heading">THE ALPHA AGENCY</h1>
+            </div>
+            <Canvas camera={{ position: [0, 4, 10], fov: 50 }}>
+              <ambientLight intensity={0.09} />
+              <spotLight
+                position={[10, 48, 0]}
+                angle={0.15}
+                penumbra={1}
+                intensity={2}
+              />
 
+              <CupMoon position={[0, -5, 6]}></CupMoon>
+            </Canvas>
+          </div>
+        </div>
 
+        <div className="page">
+          <div id="fullmoon">
+            <Canvas camera={{ position: [-8, 4, 15] }}>
+              <ambientLight intensity={0.5} />
+              <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+              <pointLight position={[-100, 300, 200]} />
+
+              <FullMoon></FullMoon>
+            </Canvas>
+          </div>
+        </div>
+        <div className="page">
+          <Canvas camera={{ position: [1, 4, 15] }}>
+            <ambientLight intensity={1} />
+
+            <HalfMoon></HalfMoon>
+            <BrainRight position={[3, 0, -1]} />
+            {/* <OrbitControls /> */}
+          </Canvas>
+        </div>
+        <div className="page"></div>
+        <div className="page"></div>
+        <div className="page"></div>
+        <div className="page"></div>
+        <div className="page"></div>
+        <div className="page"></div>
+        <div className="page"></div>
+        <div className="page"></div>
+        <div className="page"></div>
+        <div className="page"></div>
+      </div>
     </>
-    
-  )
+  );
 }

@@ -55,10 +55,11 @@ export function FullMoon(props) {
           delay: 2000,
         },
       })
+      // .fromTo(camera, { fov: 55 }, { fov: 60 })
       .fromTo(
         props.fullMoonAmbientLightRef.current,
-        { intensity: 100 },
-        { intensity: 1 }
+        { intensity: 10 },
+        { intensity: 0.01 }
       )
       // .to(props.fullMoonAmbientLightRef.current, { intensity: 0.01 })
       .to(scene.rotation, { y: 2 });

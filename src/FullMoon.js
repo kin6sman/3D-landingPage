@@ -11,34 +11,69 @@ export function FullMoon(props) {
   const mesh = useRef();
   let camera = useThree((state) => state.camera);
   let scene = useThree((state) => state.scene);
+  let light = useThree((state) => state);
+
+  // console.log(light);
+  // useLayoutEffect(
+  //   () =>
+  //     gsap.to(mesh.current, {
+
+  //       // y: -2, // New position when the scroll reaches 1
+  //       duration: 2, // Animation duration
+  //       ease: "Power2.easeInOut", // Easing function
+  //       scrollTrigger: {
+  //         trigger: ".fullmoon",
+  //         start: "top center",
+  //         end: "bottom center",
+  //         scrub: true,
+  //         onUpdate: (self) => {
+  //           let progress = self.progress;
+  //           let decProgress = 1 - self.progress;
+  //           // console.log(decProgress);
+  //           if(progress === 1){
+  //             scene.children.AmbientLight = {x: 1, y: 1, z: 100}
+  //           }
+  //         },
+  //       },
+  //     }),
+
+  //   []
+  // );
 
   useLayoutEffect(() => {
     // gsap.to(camera.position, {x:1, y:0.5})
+    // gsap.to(scene.rotation, { x: 2 });
     gsap
       .timeline({
         scrollTrigger: {
           trigger: "#fullmoon",
-          start: "top top",
+          start: "top-=800 top",
           end: "bottom+=500 bottom",
+          ease: "Power2.easeIn",
           markers: true,
           scrub: true,
           delay: 2000,
         },
       })
-      .fromTo(camera.position, { x: -8, y: 10, z: 15 }, { y: 4 })
-      .to(scene.rotation, { x: 2 });
+      .fromTo(
+        props.fullMoonAmbientLightRef.current,
+        { intensity: 100 },
+        { intensity: 1 }
+      )
+      // .to(props.fullMoonAmbientLightRef.current, { intensity: 0.01 })
+      .to(scene.rotation, { y: 2 });
   }, []);
 
   // Define the rotation speed in radians per frame render
   const rotationSpeed = 0.001;
 
   // Use the useFrame hook to update the rotation of the mesh on each frame render
-  useFrame(() => {
-    if (mesh.current) {
-      // Update the rotation of the mesh using the rotationSpeed
-      mesh.current.rotation.x += rotationSpeed;
-    }
-  });
+  // useFrame(() => {
+  //   if (mesh.current) {
+  //     // Update the rotation of the mesh using the rotationSpeed
+  //     mesh.current.rotation.x += rotationSpeed;
+  //   }
+  // });
 
   return (
     <group {...props} dispose={null}>

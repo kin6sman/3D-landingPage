@@ -11,6 +11,7 @@ import Page1 from "./pages/Page1";
 function Box(props) {
   // This reference gives us direct access to the THREE.Mesh object
   const ref = useRef();
+
   // Hold state for hovered and clicked events
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
@@ -33,36 +34,47 @@ function Box(props) {
 }
 
 export default function App() {
+  const fullMoonAmbientLightRef = useRef();
+  const heading = useRef();
   return (
     <>
       <div className="body-container">
-        <div className="page">
+        <div className="page page1">
           <div className="page1-cupMoon">
-            <div className="heading-p1-container">
-              <h1 className="page1-heading">THE ALPHA AGENCY</h1>
+            <div className="heading-p1-container" id="head">
+              <h1 className="page1-heading" ref={heading}>
+                THE ALPHA AGENCY
+              </h1>
             </div>
-            <Canvas camera={{ position: [0, 4, 10], fov: 50 }}>
-              <ambientLight intensity={0.09} />
+            <Canvas camera={{ position: [0, 4, 10], fov: 50 }} id="model-1">
+              <ambientLight intensity={0.1} />
               <spotLight
-                position={[10, 48, 0]}
+                position={[0, 0, -100]}
                 angle={0.15}
                 penumbra={1}
                 intensity={2}
               />
 
-              <CupMoon position={[0, -5, 6]}></CupMoon>
+              <CupMoon position={[0, -5, 6]} heading={heading}></CupMoon>
             </Canvas>
           </div>
         </div>
 
-        <div className="page">
+        <div className="page page2">
           <div id="fullmoon">
-            <Canvas camera={{ position: [-8, 4, 15] }}>
-              <ambientLight intensity={0.5} />
-              <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+            <Canvas camera={{ position: [-8, 4, 15], fov: 65 }} id="model-2">
+              <ambientLight intensity={0.1} ref={fullMoonAmbientLightRef} />
+              <spotLight
+                position={[10, 48, 0]}
+                angle={0.9}
+                penumbra={1}
+                intensity={2}
+              />
               <pointLight position={[-100, 300, 200]} />
 
-              <FullMoon></FullMoon>
+              <FullMoon
+                fullMoonAmbientLightRef={fullMoonAmbientLightRef}
+              ></FullMoon>
             </Canvas>
           </div>
         </div>

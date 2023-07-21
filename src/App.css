@@ -80,3 +80,16 @@ body {
 h1 {
   color: #fff;
 }
+/* 
+.page2 {
+  height: 3000px !important;
+} */
+.gap {
+  height: 2000px !important;
+}
+
+.page2 {
+  background-color: #000000;
+  height: 100vh;
+  width: 100vw;
+}

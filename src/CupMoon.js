@@ -22,8 +22,8 @@ export function CupMoon(props) {
         end: "bottom+=500 center",
 
         markers: true,
-        scrub: true,
-        delay: 2000,
+        // scrub: true,
+        delay: 1000,
 
         onUpdate: (self) => {
           let progress = self.progress;
@@ -41,15 +41,16 @@ export function CupMoon(props) {
           // Example: Change the background color based on scroll progress
           if (progress > 0 && progress < 1) {
             document.getElementById("head").style.visibility = "visible";
-            document.getElementById("model-1").style.opacity =
-              (decProgress * 1) / 2;
+            document.getElementById("model-1").style.opacity = decProgress;
+            document.getElementById("model-1").style.visibility = "visible";
           } else if (progress === 1) {
             // document.getElementById("fullmoon").style.position = "fixed";
+            document.getElementById("model-1").style.visibility = "hidden";
             document.getElementById("head").style.visibility = "hidden";
           } else if (progress <= 0.5) {
             document.getElementById("fullmoon").style.position = "relative";
           } else if (!progress === 1) {
-            document.getElementById("head").style.visibility = "visible";
+            // document.getElementById("head").style.visibility = "visible";
           }
         },
       },

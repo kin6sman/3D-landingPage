@@ -36,6 +36,7 @@ import Page1 from "./pages/Page1";
 export default function App() {
   const fullMoonAmbientLightRef = useRef();
   const heading = useRef();
+  const fullMoonSpotlight = useRef();
   return (
     <>
       <div className="body-container">
@@ -59,25 +60,28 @@ export default function App() {
             </Canvas>
           </div>
         </div>
-        <div className="page"></div>
+        <div className="page gap"></div>
         <div className="page page2">
           <div id="fullmoon">
             <Canvas camera={{ position: [-8, 4, 15], fov: 55 }} id="model-2">
               <ambientLight intensity={0.1} ref={fullMoonAmbientLightRef} />
               <spotLight
-                position={[10, 48, 0]}
+                position={[0, 100, -100]}
                 angle={0.9}
                 penumbra={1}
                 intensity={2}
+                ref={fullMoonSpotlight}
               />
-              <pointLight position={[-100, 300, 200]} />
+              <pointLight position={[0, 0, 0]} />
 
               <FullMoon
+                fullMoonSpotlight={fullMoonSpotlight}
                 fullMoonAmbientLightRef={fullMoonAmbientLightRef}
               ></FullMoon>
             </Canvas>
           </div>
         </div>
+        <div className="page"></div>
         <div className="page">
           <Canvas camera={{ position: [1, 4, 15] }}>
             <ambientLight intensity={1} />
@@ -87,7 +91,7 @@ export default function App() {
             {/* <OrbitControls /> */}
           </Canvas>
         </div>
-        <div className="page"></div>
+
         <div className="page"></div>
         <div className="page"></div>
         <div className="page"></div>

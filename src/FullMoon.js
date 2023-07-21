@@ -47,39 +47,62 @@ export function FullMoon(props) {
       .timeline({
         scrollTrigger: {
           trigger: "#fullmoon",
-          start: "top-=800 top",
+          start: "top-=100 top",
           end: "bottom+=500 bottom",
-          ease: "Power2.easeIn",
+          // ease: "Power2.easeIn",
           markers: true,
-          scrub: true,
+          scrub: false,
           delay: 2000,
+          onUpdate: (self) => {
+            let progress = self.progress;
+            let decProgress = 1 - self.progress;
+            if (progress > 0 && progress < 1) {
+              // document.getElementById("head").style.visibility = "visible";
+              document.getElementById("model-2").style.opacity = (
+                decProgress * 2
+              ).toFixed(1);
+              props.fullMoonAmbientLightRef.current.intensity =
+                (decProgress * 1) / 2;
+            } else if (progress === 1) {
+            }
+          },
         },
       })
-      // .fromTo(camera, { fov: 55 }, { fov: 60 })
       .fromTo(
-        props.fullMoonAmbientLightRef.current,
-        { intensity: 10 },
-        { intensity: 0.01 }
+        props.fullMoonSpotlight.current,
+        { intensity: 0.1 },
+        { intensity: 2 }
       )
-      // .to(props.fullMoonAmbientLightRef.current, { intensity: 0.01 })
-      .to(scene.rotation, { y: 2 });
+      .fromTo(
+        props.fullMoonSpotlight.current.position,
+        { x: 0, y: 100, z: -100 },
+        { x: 10, y: 48, z: 0 }
+      );
+    // .fromTo(camera, { fov: 55 }, { fov: 60 })
+    // .fromTo(
+    //   props.fullMoonAmbientLightRef.current,
+    //   { intensity: 10 },
+    //   { intensity: 0.01 }
+    // );
+    // .to(props.fullMoonAmbientLightRef.current, { intensity: 0.01 })
+    // .to(scene.rotation, { y: 2 });
   }, []);
 
   // Define the rotation speed in radians per frame render
   const rotationSpeed = 0.001;
 
   // Use the useFrame hook to update the rotation of the mesh on each frame render
-  // useFrame(() => {
-  //   if (mesh.current) {
-  //     // Update the rotation of the mesh using the rotationSpeed
-  //     mesh.current.rotation.x += rotationSpeed;
-  //   }
-  // });
+  useFrame(() => {
+    if (mesh.current) {
+      // Update the rotation of the mesh using the rotationSpeed
+      mesh.current.rotation.x += rotationSpeed;
+    }
+  });
 
   return (
     <group {...props} dispose={null}>
       <mesh
-        // ref={mesh}
+        ref={mesh}
         geometry={nodes.Cube008.geometry}
         material={materials["Default OBJ.005"]}
         rotation={[-Math.PI, 0, -Math.PI]}

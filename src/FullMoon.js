@@ -48,21 +48,37 @@ export function FullMoon(props) {
         scrollTrigger: {
           trigger: "#fullmoon",
           start: "top-=100 top",
-          end: "bottom+=500 bottom",
+          end: "bottom+=1000 bottom",
           // ease: "Power2.easeIn",
+          pin: true,
           markers: true,
-          scrub: false,
+          scrub: true,
           delay: 2000,
+          onEnter: () => {
+            console.log("Animation started");
+            document.getElementById("model-2").style.visibility = "visible";
+          },
+          onEnterBack: () => {
+            document.getElementById("model-2").style.visibility = "visible";
+          },
+          onLeave: () => {
+            document.getElementById("model-2").style.visibility = "hidden";
+          },
+
+          onLeaveBack: () => {
+            document.getElementById("model-2").style.visibility = "hidden";
+          },
+
           onUpdate: (self) => {
-            let progress = self.progress;
-            let decProgress = 1 - self.progress;
+            let progress = self.progress.toFixed(1);
+            let decProgress = (1 - self.progress).toFixed(1);
+            console.log(progress);
             if (progress > 0 && progress < 1) {
               // document.getElementById("head").style.visibility = "visible";
               document.getElementById("model-2").style.opacity = (
-                decProgress * 2
+                progress * 2
               ).toFixed(1);
-              props.fullMoonAmbientLightRef.current.intensity =
-                (decProgress * 1) / 2;
+              props.fullMoonAmbientLightRef.current.intensity = progress;
             } else if (progress === 1) {
             }
           },

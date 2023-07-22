@@ -17,9 +17,10 @@ export function CupMoon(props) {
   useLayoutEffect(() => {
     gsap.timeline({
       scrollTrigger: {
-        trigger: ".page1-cupMoon",
+        trigger: ".page1-heading",
         start: "top center",
         end: "bottom+=500 center",
+        pin: true,
 
         markers: true,
         // scrub: true,

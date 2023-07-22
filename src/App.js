@@ -60,7 +60,7 @@ export default function App() {
             </Canvas>
           </div>
         </div>
-        <div className="page gap"></div>
+        {/* <div className="page gap"></div> */}
         <div className="page page2">
           <div id="fullmoon">
             <Canvas camera={{ position: [-8, 4, 15], fov: 55 }} id="model-2">

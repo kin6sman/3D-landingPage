@@ -61,8 +61,9 @@ export default function App() {
           </div>
         </div>
         {/* <div className="page gap"></div> */}
-        <div className="page page2">
+        <div className="page page2" id="page2">
           <div id="fullmoon">
+            <h1 className="p2-heading">ATTAIN DIGITAL NIRVANA</h1>
             <Canvas camera={{ position: [-8, 4, 15], fov: 55 }} id="model-2">
               <ambientLight intensity={0.1} ref={fullMoonAmbientLightRef} />
               <spotLight
@@ -81,9 +82,9 @@ export default function App() {
             </Canvas>
           </div>
         </div>
-        <div className="page"></div>
-        <div className="page">
-          <Canvas camera={{ position: [1, 4, 15] }}>
+
+        <div className="page page3" id="halfMoonBrain">
+          <Canvas camera={{ position: [1, 4, 15] }} id="model-3">
             <ambientLight intensity={1} />
 
             <HalfMoon></HalfMoon>
@@ -91,6 +92,7 @@ export default function App() {
             {/* <OrbitControls /> */}
           </Canvas>
         </div>
+        <div className="page gap"></div>
 
         <div className="page"></div>
         <div className="page"></div>

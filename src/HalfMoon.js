@@ -1,21 +1,50 @@
-import React, { useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
-import { useFrame } from "react-three-fiber";
+
+import React, { useRef, useEffect, useLayoutEffect } from "react";
+import { Canvas, useFrame, useThree } from "react-three-fiber";
+import gsap from "gsap";
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function HalfMoon(props) {
+  gsap.registerPlugin(ScrollTrigger);
   const group = useRef();
   const mesh = useRef();
 
-  // Define the rotation speed in radians per frame render
-  const rotationSpeed = 0.005;
+  // scrolling effect
+  useLayoutEffect(() => {
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: "#model-3",
+        start: "top top",
+        end: "bottom+=1000 bottom",
+        pin: true,
+        markers: true,
+        scrub: true,
+        delay: 2000,
+        onEnter: () => {
+          console.log("Animation started");
+          document.getElementById("model-3").style.visibility = "visible";
+        },
+        onEnterBack: () => {
+          // document.getElementById("model-2").style.visibility = "visible";
+        },
+        onLeave: () => {
+          // document.getElementById("model-2").style.visibility = "hidden";
+          // document.getElementById("page2").style.position = "fixed";
+        },
 
-  // Use the useFrame hook to update the rotation of the mesh on each frame render
+        onLeaveBack: () => {
+          // document.getElementById("model-2").style.visibility = "hidden";
+        },
+      },
+    });
+  });
+
+  const rotationSpeed = 0.005;
   useFrame(() => {
     if (mesh.current) {
-      // Update the rotation of the mesh using the rotationSpeed
       mesh.current.rotation.y += rotationSpeed;
-    //   mesh.current.rotation.y += rotationSpeed;
-    //   mesh.current.rotation.z += rotationSpeed;
     }
   });
   const { nodes, materials, animations } = useGLTF("/moonHalfCut.gltf");
@@ -24,7 +53,7 @@ export function HalfMoon(props) {
     <group ref={group} {...props} dispose={null}>
       <group name="exporting_layers">
         <mesh
-            // ref={mesh}
+          // ref={mesh}
 
           name="Cube003"
           castShadow

@@ -63,10 +63,11 @@ export function FullMoon(props) {
           },
           onLeave: () => {
             document.getElementById("model-2").style.visibility = "hidden";
+            // document.getElementById("page2").style.position = "fixed";
           },
 
           onLeaveBack: () => {
-            document.getElementById("model-2").style.visibility = "hidden";
+            // document.getElementById("model-2").style.visibility = "hidden";
           },
 
           onUpdate: (self) => {

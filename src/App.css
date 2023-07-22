@@ -92,7 +92,7 @@ h1 {
 .gap {
   height: 500px !important;
 }
-
+/*---------------- PAGE-2-------------------- */
 .page2 {
   background-color: #000000;
   height: 100vh;
@@ -100,5 +100,28 @@ h1 {
 }
 
 #model-2 {
+  visibility: hidden;
+}
+
+.p2-heading {
+  font-size: 100px;
+  position: absolute;
+  width: 70%;
+  text-align: center;
+  margin: 10px auto;
+  top: 20%;
+  left: 15%;
+  z-index: 1;
+}
+
+/* -------- PAGE - 3 ---------- */
+
+.page3 {
+  /* position: fixed !important; */
+  /* background-color: red; */
+  /* z-index: 100; */
+}
+
+#model-3 {
   visibility: hidden;
 }

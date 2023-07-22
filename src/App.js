@@ -101,7 +101,7 @@ export default function App() {
       <div className="body-container">
         <div className="page page3" id="page-3">
           <h1>Testing</h1>
-          <Canvas camera={{ position: [-10, -10, 0], fov: 50 }} id="model-1">
+          <Canvas camera={{ position: [-10, -10, 0], fov: 10 }} id="model-4">
             <ambientLight intensity={1} />
             <spotLight
               position={[0, 0, -100]}

@@ -7,6 +7,7 @@ import { HalfMoon } from "./HalfMoon";
 import { BrainRight } from "./BrainRight";
 import { CupMoon } from "./CupMoon";
 import Page1 from "./pages/Page1";
+import { HeartModel } from "./HeartModel";
 
 // function Box(props) {
 //   // This reference gives us direct access to the THREE.Mesh object
@@ -35,11 +36,27 @@ import Page1 from "./pages/Page1";
 
 export default function App() {
   const fullMoonAmbientLightRef = useRef();
+  const rotate2ModelsRef = useRef();
   const heading = useRef();
   const fullMoonSpotlight = useRef();
   return (
     <>
       <div className="body-container">
+        <div className="page">
+          <h1>Testing</h1>
+          <Canvas camera={{ position: [-10, -1, 0], fov: 100 }} id="model-1">
+            <ambientLight intensity={1} />
+            <spotLight
+              position={[0, 0, -100]}
+              angle={0.15}
+              penumbra={1}
+              intensity={2}
+            />
+
+            <HeartModel />
+            <OrbitControls />
+          </Canvas>
+        </div>
         <div className="page page1">
           <div className="page1-cupMoon">
             <div className="heading-p1-container" id="head">
@@ -86,15 +103,18 @@ export default function App() {
         <div className="page page3" id="halfMoonBrain">
           <Canvas camera={{ position: [1, 4, 15] }} id="model-3">
             <ambientLight intensity={1} />
+            <group ref={rotate2ModelsRef}>
+              {/* HalfMoon */}
+              <HalfMoon rotate2ModelsRef={rotate2ModelsRef} />
 
-            <HalfMoon></HalfMoon>
-            <BrainRight position={[3, 0, -1]} />
+              {/* BrainRight */}
+              <BrainRight position={[3, 0, -1]} />
+            </group>
             {/* <OrbitControls /> */}
           </Canvas>
         </div>
         <div className="page gap"></div>
 
-        <div className="page"></div>
         <div className="page"></div>
         <div className="page"></div>
         <div className="page"></div>

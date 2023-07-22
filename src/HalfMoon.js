@@ -10,6 +10,7 @@ export function HalfMoon(props) {
   gsap.registerPlugin(ScrollTrigger);
   const group = useRef();
   const mesh = useRef();
+  const rotate2ModelsRef = props.rotate2ModelsRef;
 
   // scrolling effect
   useLayoutEffect(() => {
@@ -43,8 +44,8 @@ export function HalfMoon(props) {
 
   const rotationSpeed = 0.005;
   useFrame(() => {
-    if (mesh.current) {
-      mesh.current.rotation.y += rotationSpeed;
+    if (rotate2ModelsRef.current) {
+      rotate2ModelsRef.current.rotation.y += rotationSpeed;
     }
   });
   const { nodes, materials, animations } = useGLTF("/moonHalfCut.gltf");

@@ -6,33 +6,8 @@ import { FullMoon } from "./FullMoon";
 import { HalfMoon } from "./HalfMoon";
 import { BrainRight } from "./BrainRight";
 import { CupMoon } from "./CupMoon";
-import Page1 from "./pages/Page1";
+import Page5 from "./pages/Page5";
 import { HeartModel } from "./HeartModel";
-
-// function Box(props) {
-//   // This reference gives us direct access to the THREE.Mesh object
-//   const ref = useRef();
-
-//   // Hold state for hovered and clicked events
-//   const [hovered, hover] = useState(false);
-//   const [clicked, click] = useState(false);
-//   // Subscribe this component to the render-loop, rotate the mesh every frame
-//   useFrame((state, delta) => (ref.current.rotation.x += delta));
-//   // Return the view, these are regular Threejs elements expressed in JSX
-//   return (
-//     <mesh
-//       {...props}
-//       ref={ref}
-//       scale={clicked ? 1.5 : 1}
-//       onClick={(event) => click(!clicked)}
-//       onPointerOver={(event) => (event.stopPropagation(), hover(true))}
-//       onPointerOut={(event) => hover(false)}
-//     >
-//       <boxGeometry args={[1, 1, 1]} />
-//       <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
-//     </mesh>
-//   );
-// }
 
 export default function App() {
   const fullMoonAmbientLightRef = useRef();
@@ -101,7 +76,7 @@ export default function App() {
       <div className="body-container">
         <div className="page page3" id="page-3">
           <h1>Testing</h1>
-          <Canvas camera={{ position: [-10, -10, 0], fov: 10 }} id="model-4">
+          <Canvas camera={{ position: [-10, -10, 0], fov: 5 }} id="model-4">
             <ambientLight intensity={1} />
             <spotLight
               position={[0, 0, -100]}
@@ -110,12 +85,17 @@ export default function App() {
               intensity={2}
             />
 
-            <HeartModel />
+            {/* <HeartModel /> */}
+
             {/* <OrbitControls /> */}
           </Canvas>
         </div>
-        <div className="page"></div>
-        <div className="page"></div>
+        <div className="page gap"></div>
+        <div className="page page5">
+          <div className="image-container">
+            <Page5 />
+          </div>
+        </div>
         <div className="page"></div>
         <div className="page"></div>
         <div className="page"></div>

@@ -36,10 +36,10 @@ export function HeartModel(props) {
             x: 1,
             y: 1,
             z: 1,
-            duration: 0.5,
-            ease: "power4.out",
+            duration: 0.3,
+            ease: "power4.in",
             repeat: -1, // Repeat the animation infinitely
-            yoyo: true, // Make the animation reverse back and forth like a bounce
+            yoyo: false, // Make the animation reverse back and forth like a bounce
           });
         },
         onLeave: () => {
@@ -48,10 +48,10 @@ export function HeartModel(props) {
             x: 0,
             y: 0,
             z: 0,
-            duration: 0.5,
-            ease: "power4.out",
-            repeat: -1, // Repeat the animation infinitely
-            yoyo: true, // Make the animation reverse back and forth like a bounce
+            duration: 0.2,
+            ease: "power4.in",
+            // repeat: -1, // Repeat the animation infinitely
+            yoyo: false, // Make the animation reverse back and forth like a bounce
           });
         },
       },

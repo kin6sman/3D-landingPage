@@ -61,36 +61,48 @@ export default function App() {
         </div>
       </div>
 
-      <div className="page page3" id="halfMoonBrain">
-        <Canvas camera={{ position: [1, 4, 15], fov: 55 }} id="model-3">
-          <ambientLight intensity={1} />
-          <group ref={rotate2ModelsRef}>
-            {/* HalfMoon */}
-            <HalfMoon rotate2ModelsRef={rotate2ModelsRef} />
+      <div className="page page3">
+        <div id="halfMoonBrain">
+          <h3 className="h3-halfMoon">
+            We are a mix of right brain - left brain
+          </h3>
+          <Canvas camera={{ position: [1, 3, 15], fov: 70 }} id="model-3">
+            <ambientLight intensity={1} />
+            <group ref={rotate2ModelsRef}>
+              {/* HalfMoon */}
+              <HalfMoon rotate2ModelsRef={rotate2ModelsRef} />
 
-            {/* BrainRight */}
-            <BrainRight position={[3, 0, -1]} />
-          </group>
-          {/* <OrbitControls /> */}
-        </Canvas>
+              {/* BrainRight */}
+              <BrainRight position={[3, 0, -1]} />
+            </group>
+            {/* <OrbitControls /> */}
+          </Canvas>
+        </div>
       </div>
       <div className="page gap"></div>
       <div className="body-container">
-        <div className="page page3" id="page-3">
-          <h1>Testing</h1>
-          <Canvas camera={{ position: [-10, -10, 0], fov: 5 }} id="model-4">
-            <ambientLight intensity={1} />
-            <spotLight
-              position={[0, 0, -100]}
-              angle={0.15}
-              penumbra={1}
-              intensity={2}
-            />
+        <div className="page page4" id="page-3">
+          <div className="heartContainer">
+            <p id="p4-para1">Every brief for us is an opportunity to</p>
+            <p id="p4-para2">
+              Declutter Brand communication Decipher Target Audience
+            </p>
+            <p id="p4-para3">and deliver</p>
+            <h1 id="p4-h1">“BRAND LOVE”</h1>
+            <Canvas camera={{ position: [-10, -10, 0], fov: 5 }} id="model-4">
+              <ambientLight intensity={1} />
+              <spotLight
+                position={[0, 0, -100]}
+                angle={0.15}
+                penumbra={1}
+                intensity={2}
+              />
 
-            <HeartModel />
+              <HeartModel />
 
-            {/* <OrbitControls /> */}
-          </Canvas>
+              {/* <OrbitControls /> */}
+            </Canvas>
+          </div>
         </div>
         <div className="page gap"></div>
         <div className="page page5">

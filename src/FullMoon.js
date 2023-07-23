@@ -64,13 +64,22 @@ export function FullMoon(props) {
             document.getElementById("p2-heading").style.visibility = "visible";
           },
           onLeave: () => {
-            document.getElementById("model-2").style.visibility = "hidden";
+            gsap.to("#model-2", {
+              duration: 3,
+              ease: "power4.out",
+              visibility: "hidden",
+
+              // repeat: -1, // Repeat the animation infinitely
+              yoyo: false, // Make the animation reverse back and forth like a bounce
+            });
+
+            //   document.getElementById("model-2").style.visibility = "hidden";
             document.getElementById("p2-heading").style.visibility = "hidden";
             // document.getElementById("page2").style.position = "fixed";
           },
 
           onLeaveBack: () => {
-            // document.getElementById("model-2").style.visibility = "hidden";
+            document.getElementById("model-2").style.visibility = "hidden";
           },
 
           onUpdate: (self) => {
@@ -78,13 +87,11 @@ export function FullMoon(props) {
             let decProgress = 1 - self.progress;
             console.log(progress);
             if (progress > 0 && progress < 1) {
-              // document.getElementById("head").style.visibility = "visible";
               document.getElementById("model-2").style.opacity = progress * 2;
               document.getElementById("p2-heading").style.opacity =
                 progress * 2;
 
               props.fullMoonAmbientLightRef.current.intensity = progress;
-            } else if (progress === 1) {
             }
           },
         },
@@ -99,19 +106,6 @@ export function FullMoon(props) {
         { x: 0, y: 100, z: -100 },
         { x: 10, y: 48, z: 0 }
       );
-    // .to(
-    //   ".p2-heading",
-
-    //   { opacity: 0.5 }
-    // );
-    // .fromTo(camera, { fov: 55 }, { fov: 60 })
-    // .fromTo(
-    //   props.fullMoonAmbientLightRef.current,
-    //   { intensity: 10 },
-    //   { intensity: 0.01 }
-    // );
-    // .to(props.fullMoonAmbientLightRef.current, { intensity: 0.01 })
-    // .to(scene.rotation, { y: 2 });
   }, []);
 
   // Define the rotation speed in radians per frame render

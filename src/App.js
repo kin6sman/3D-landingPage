@@ -39,7 +39,9 @@ export default function App() {
       {/* <div className="page gap"></div> */}
       <div className="page page2" id="page2">
         <div id="fullmoon">
-          <h1 className="p2-heading">ATTAIN DIGITAL NIRVANA</h1>
+          <h1 className="p2-heading" id="p2-heading">
+            ATTAIN DIGITAL NIRVANA
+          </h1>
           <Canvas camera={{ position: [-8, 4, 15], fov: 55 }} id="model-2">
             <ambientLight intensity={0.1} ref={fullMoonAmbientLightRef} />
             <spotLight
@@ -60,7 +62,7 @@ export default function App() {
       </div>
 
       <div className="page page3" id="halfMoonBrain">
-        <Canvas camera={{ position: [1, 4, 15] }} id="model-3">
+        <Canvas camera={{ position: [1, 4, 15], fov: 55 }} id="model-3">
           <ambientLight intensity={1} />
           <group ref={rotate2ModelsRef}>
             {/* HalfMoon */}
@@ -85,7 +87,7 @@ export default function App() {
               intensity={2}
             />
 
-            {/* <HeartModel /> */}
+            <HeartModel />
 
             {/* <OrbitControls /> */}
           </Canvas>
@@ -96,12 +98,6 @@ export default function App() {
             <Page5 />
           </div>
         </div>
-        <div className="page"></div>
-        <div className="page"></div>
-        <div className="page"></div>
-        <div className="page"></div>
-        <div className="page"></div>
-        <div className="page"></div>
       </div>
     </>
   );

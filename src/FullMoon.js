@@ -47,7 +47,7 @@ export function FullMoon(props) {
       .timeline({
         scrollTrigger: {
           trigger: "#fullmoon",
-          start: "top-=100 top",
+          start: "top-=200 top",
           end: "bottom+=1000 bottom",
           // ease: "Power2.easeIn",
           pin: true,
@@ -57,12 +57,15 @@ export function FullMoon(props) {
           onEnter: () => {
             console.log("Animation started");
             document.getElementById("model-2").style.visibility = "visible";
+            document.getElementById("p2-heading").style.visibility = "visible";
           },
           onEnterBack: () => {
             document.getElementById("model-2").style.visibility = "visible";
+            document.getElementById("p2-heading").style.visibility = "visible";
           },
           onLeave: () => {
             document.getElementById("model-2").style.visibility = "hidden";
+            document.getElementById("p2-heading").style.visibility = "hidden";
             // document.getElementById("page2").style.position = "fixed";
           },
 
@@ -71,14 +74,15 @@ export function FullMoon(props) {
           },
 
           onUpdate: (self) => {
-            let progress = self.progress.toFixed(1);
-            let decProgress = (1 - self.progress).toFixed(1);
+            let progress = self.progress;
+            let decProgress = 1 - self.progress;
             console.log(progress);
             if (progress > 0 && progress < 1) {
               // document.getElementById("head").style.visibility = "visible";
-              document.getElementById("model-2").style.opacity = (
-                progress * 2
-              ).toFixed(1);
+              document.getElementById("model-2").style.opacity = progress * 2;
+              document.getElementById("p2-heading").style.opacity =
+                progress * 2;
+
               props.fullMoonAmbientLightRef.current.intensity = progress;
             } else if (progress === 1) {
             }
@@ -87,14 +91,19 @@ export function FullMoon(props) {
       })
       .fromTo(
         props.fullMoonSpotlight.current,
-        { intensity: 0.1 },
-        { intensity: 2 }
+        { intensity: 5 },
+        { intensity: 0.5, delay: 2000 }
       )
       .fromTo(
         props.fullMoonSpotlight.current.position,
         { x: 0, y: 100, z: -100 },
         { x: 10, y: 48, z: 0 }
       );
+    // .to(
+    //   ".p2-heading",
+
+    //   { opacity: 0.5 }
+    // );
     // .fromTo(camera, { fov: 55 }, { fov: 60 })
     // .fromTo(
     //   props.fullMoonAmbientLightRef.current,

@@ -17,7 +17,7 @@ export function HalfMoon(props) {
     gsap.timeline({
       scrollTrigger: {
         trigger: "#model-3",
-        start: "top top",
+        start: "top+=100 top",
         end: "bottom+=1000 bottom",
         pin: true,
         markers: true,
@@ -28,15 +28,15 @@ export function HalfMoon(props) {
           document.getElementById("model-3").style.visibility = "visible";
         },
         onEnterBack: () => {
-          // document.getElementById("model-2").style.visibility = "visible";
+          document.getElementById("model-3").style.visibility = "visible";
         },
         onLeave: () => {
-          // document.getElementById("model-2").style.visibility = "hidden";
+          document.getElementById("model-3").style.visibility = "hidden";
           // document.getElementById("page2").style.position = "fixed";
         },
 
         onLeaveBack: () => {
-          // document.getElementById("model-2").style.visibility = "hidden";
+          document.getElementById("model-3").style.visibility = "hidden";
         },
       },
     });

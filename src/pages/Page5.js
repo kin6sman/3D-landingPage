@@ -1,29 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Page5 = () => {
-  useEffect(() => {
-    // Select the 'stats.svg' image
+  gsap.registerPlugin(ScrollTrigger);
+
+  useLayoutEffect(() => {
+    const otherImages = document.querySelectorAll("img:not(#charkha-image)");
     const statsImage = document.getElementById("charkha-image");
 
-    // Rotate the 'stats.svg' image 360 degrees in the opposite direction
     gsap.to(statsImage, {
-      rotation: -360, // Negative value for opposite direction
-      duration: 5,
+      rotation: -360,
+      duration: 10,
       ease: "linear",
-      repeat: -1, // Repeat the animation infinitely
-      yoyo: false, // Make the animation reverse back and forth
+      repeat: -1,
+      delay: 2000,
+      yoyo: false,
     });
 
-    // Rotate the other images (except 'stats.svg') 360 degrees in the original direction
-    const otherImages = document.querySelectorAll("img:not(#charkha-image)");
     gsap.to(otherImages, {
       rotation: 360,
-      duration: 2,
-      // delay: 2000,
+      duration: 5,
       ease: "linear",
-      repeat: -1, // Repeat the animation infinitely
-      yoyo: false, // Make the animation reverse back and forth
+      repeat: -1,
+      yoyo: false,
     });
   }, []);
 

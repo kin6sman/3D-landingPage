@@ -22,7 +22,7 @@ export function CupMoon(props) {
         end: "bottom+=500 center",
         pin: true,
 
-        markers: true,
+        markers: false,
         // scrub: true,
         delay: 1000,
 

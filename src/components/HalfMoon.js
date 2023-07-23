@@ -20,7 +20,7 @@ export function HalfMoon(props) {
         start: "top+=100 top",
         end: "bottom+=1000 bottom",
         pin: true,
-        markers: true,
+        markers: false,
         scrub: true,
         delay: 2000,
         onEnter: () => {

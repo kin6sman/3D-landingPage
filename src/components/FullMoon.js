@@ -51,7 +51,7 @@ export function FullMoon(props) {
           end: "bottom+=1000 bottom",
           // ease: "Power2.easeIn",
           pin: true,
-          markers: true,
+          markers: false,
           scrub: true,
           delay: 2000,
           onEnter: () => {

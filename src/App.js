@@ -2,12 +2,12 @@ import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import "./App.css";
-import { FullMoon } from "./FullMoon";
-import { HalfMoon } from "./HalfMoon";
-import { BrainRight } from "./BrainRight";
-import { CupMoon } from "./CupMoon";
+import { FullMoon } from "./components/FullMoon";
+import { HalfMoon } from "./components/HalfMoon";
+import { BrainRight } from "./components/BrainRight";
+import { CupMoon } from "./components/CupMoon";
 import Page5 from "./pages/Page5";
-import { HeartModel } from "./HeartModel";
+import { HeartModel } from "./components/HeartModel";
 
 export default function App() {
   const fullMoonAmbientLightRef = useRef();
@@ -81,7 +81,7 @@ export default function App() {
       </div>
       <div className="page gap"></div>
       <div className="body-container">
-        <div className="page page4" id="page-3">
+        <div className="page page4" id="page-4">
           <div className="heartContainer">
             <p id="p4-para1">Every brief for us is an opportunity to</p>
             <p id="p4-para2">
@@ -104,7 +104,7 @@ export default function App() {
             </Canvas>
           </div>
         </div>
-        <div className="page gap"></div>
+        {/* <div className="page gap"></div> */}
         <div className="page page5">
           <div className="image-container">
             <Page5 />

@@ -23,14 +23,16 @@ export function HeartModel(props) {
   useLayoutEffect(() => {
     gsap.timeline({
       scrollTrigger: {
-        trigger: "#page-3",
+        trigger: "#page-4",
         start: "top top",
         end: "bottom+=1000 bottom",
         pin: true,
-        markers: true,
+        markers: false,
         scrub: true,
         delay: 2000,
         onEnter: () => {
+          document.getElementById("page-4").style.visibility = "visible";
+          document.querySelector("#p4-para1").style.visibility = "visible";
           // Pop-in effect on scroll enter
           gsap.to(mesh.current.scale, {
             x: 1,
@@ -42,7 +44,13 @@ export function HeartModel(props) {
             yoyo: false, // Make the animation reverse back and forth like a bounce
           });
         },
+        onEnterBack: () => {
+          document.getElementById("page-4").style.visibility = "visible";
+          document.querySelector("#p4-para1").style.visibility = "visible";
+        },
         onLeave: () => {
+          document.getElementById("page-4").style.visibility = "hidden";
+          document.querySelector("#p4-para1").style.visibility = "hidden";
           // Pop-out effect on scroll leave
           gsap.to(mesh.current.scale, {
             x: 0,
@@ -53,6 +61,18 @@ export function HeartModel(props) {
             // repeat: -1, // Repeat the animation infinitely
             yoyo: false, // Make the animation reverse back and forth like a bounce
           });
+        },
+        onLeaveBack: () => {
+          document.getElementById("page-4").style.visibility = "hidden";
+          document.querySelector("#p4-para1").style.visibility = "hidden";
+        },
+        onUpdate: (self) => {
+          let progress = self.progress;
+          let decProgress = 1 - self.progress;
+          console.log(progress);
+          if (progress > 0 && progress < 1) {
+            document.querySelector("#p4-para1").style.opacity = progress;
+          }
         },
       },
     });
